@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name": "UQ Course Extension",
+    "version": "1.0",
+    "content_scripts": [
+        {
+            "js": ["scripts/content_scripts.js"],
+          "matches": ["https://learn.uq.edu.au/*"]
+        }
+      ],
+    "icons": {
+      "32": "images/default_icon.png"
+    }
+  }
