@@ -108,13 +108,19 @@ class GradePredictor:
 
 if __name__ == "__main__":
     predictor = GradePredictor(
-        "course_data_clean.json", base_grade_prediction_weighting=1/100
-    )
-    predictor.fit(
-        ["CSSE1001", "CSSE2002", "MATH1051", "MATH1052"], [7, 7, 5, 5]
-    )
-    new_courses = ["CSSE2010", "CSSE2310", "MATH1061", "MATH2401"]
+        "course_data_clean.json", base_grade_prediction_weighting=1/10)
+    import ast
+    with open("extension/Grades.txt") as f:
+        data = ast.literal_eval(f.readline())
+        
+    courses = data[0]
+    grades = np.array(data[1]).astype(int)
+        
+    predictor.fit(courses, grades)
+    
+    new_courses = ["COMP4702", "STAT3006", "STAT3007", "MATH2001"]
     grade_predictions = predictor.predict(new_courses)
 
+    print("Course   Prediction")
     for course, grade in zip(new_courses, grade_predictions):
         print(course, round(grade, 2))

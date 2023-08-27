@@ -10,7 +10,7 @@ import PDFParser from "pdf2json";
 
 
 //CALL IT LIKE THIS:
-//saveTranscriptJSON("Sxxxxxxx_UNOFFICIAL_TRANSCRIPT_009306055.pdf", "Grades.json")
+//saveTranscriptJSON("transcript path", "Grades.txt")
 
 /**
  * 
@@ -52,15 +52,15 @@ async function myFileReader(txtpath) {
             gradeLines.push(line);
         }
     }
+    let courseCodes = []
+    let courseGrades = []
     gradeLines = gradeLines.map(data => {
-        return {
-            course_type: data.slice(0, 4),
-            course_num: data.slice(9, 13),
-            grade: data.slice(68, 69)
-        }
+        courseCodes.push(data.slice(0,4) + data.slice(9,13))
+        courseGrades.push(data.slice(68,69));
     });
-    return {academic_transcript: gradeLines};
+    return [courseCodes, courseGrades];
 }
+
 
 async function read(filePath) {
     try {
