@@ -26,10 +26,11 @@ class GradePredictor:
         self._full_course_data = pd.read_json(secat_data_path, lines=True)
         self.model = linear_model.LinearRegression()
 
-        self._user_grade_prediction_weighting = (
-            1 / base_grade_prediction_weighting
-        )
+        self._use_base_grade_predictions = base_grade_prediction_weighting != 0
         if base_grade_prediction_weighting:
+            self._user_grade_prediction_weighting = (
+                1 / base_grade_prediction_weighting
+            )
             self.base_grade_predictions = self._get_base_grade_predictions()
 
         prefixes = self._full_course_data["course"].str[:4]
@@ -52,7 +53,7 @@ class GradePredictor:
         :param user_grades: the grades corresponding to each course in
             user_courses
         """
-        if self._user_grade_prediction_weighting:
+        if self._use_base_grade_predictions:
             user_grades = np.repeat(
                 user_grades,
                 int(
