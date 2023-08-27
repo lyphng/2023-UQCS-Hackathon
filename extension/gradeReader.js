@@ -10,7 +10,7 @@ import PDFParser from "pdf2json";
 
 
 //CALL IT LIKE THIS:
-//saveTranscriptJSON("transcript path", "Grades.txt")
+saveTranscriptJSON("/home/eugene2341/Desktop/hackathon/2023-UQCS-Hackathon/transcript.pdf", "Grades.txt")
 
 /**
  * 

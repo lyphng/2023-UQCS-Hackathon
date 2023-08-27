@@ -2,6 +2,7 @@ from typing import Iterable
 
 import numpy as np
 import pandas as pd
+import sys
 from sklearn import preprocessing, linear_model
 
 
@@ -107,6 +108,7 @@ class GradePredictor:
 
 
 if __name__ == "__main__":
+    new_courses = sys.argv[1:]
     predictor = GradePredictor(
         "course_data_clean.json", base_grade_prediction_weighting=1/10)
     import ast
@@ -118,9 +120,9 @@ if __name__ == "__main__":
         
     predictor.fit(courses, grades)
     
-    new_courses = ["COMP4702", "STAT3006", "STAT3007", "MATH2001"]
-    grade_predictions = predictor.predict(new_courses)
+    #new_courses = ["COMP4702", "STAT3006", "STAT3007", "MATH2001"]
+    grade_predictions = predictor.predict([course.upper() for course in new_courses])
 
-    print("Course   Prediction")
+    print("Course    Prediction   Uncapped")
     for course, grade in zip(new_courses, grade_predictions):
-        print(course, round(grade, 2))
+        print(f"{course.upper()}      {min(7, round(grade))}         {round(grade, 2)} ")
