@@ -4,11 +4,22 @@
     "version": "1.0",
     "content_scripts": [
         {
-            "js": ["scripts/content_scripts.js"],
-          "matches": ["https://learn.uq.edu.au/*"]
+        "js": ["scripts/content_scripts.js"],
+        "matches": ["https://learn.uq.edu.au/*"],
+        "run_at": "document_start"
         }
       ],
+    "action": {
+        "default_title": "UQ courses",
+        "default_popup": "popup.html"
+    },
     "icons": {
       "32": "images/default_icon.png"
-    }
+    },
+    "web_accessible_resources": [
+        {
+          "resources": [ "course_data.json" ],
+          "matches": [ "https://learn.uq.edu.au/*" ]
+        }
+      ]
   }

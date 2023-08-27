@@ -1,0 +1,21 @@
+{
+    "type": "module",
+    "dependencies": {
+        "csv-parse": "^5.4.0",
+        "fs": "^0.0.1-security",
+        "node-fetch": "^3.3.2",
+        "pdf2json": "^3.0.4",
+        "prompt-sync": "^4.2.0",
+        "typescript": "^5.1.6"
+    },
+    "name": "a1",
+    "version": "1.0.0",
+    "main": "script.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": ""
+}
