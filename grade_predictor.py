@@ -107,10 +107,15 @@ class GradePredictor:
 
 
 if __name__ == "__main__":
+    new_courses = []
+    courseNum = int(input("How many courses are you taking? "))
+    for i in range(courseNum):
+        userInput = input("Please enter a course: ")
+        new_courses.append(userInput)
     predictor = GradePredictor(
         "course_data_clean.json", base_grade_prediction_weighting=1/10)
     import ast
-    with open("extension/Grades.txt") as f:
+    with open("Grades.txt") as f:
         data = ast.literal_eval(f.readline())
         
     courses = data[0]
@@ -118,7 +123,7 @@ if __name__ == "__main__":
         
     predictor.fit(courses, grades)
     
-    new_courses = ["COMP4702", "STAT3006", "STAT3007", "MATH2001"]
+    # new_courses = ["COMP4702", "STAT3006", "STAT3007", "MATH2001"]
     grade_predictions = predictor.predict(new_courses)
 
     print("Course   Prediction")
