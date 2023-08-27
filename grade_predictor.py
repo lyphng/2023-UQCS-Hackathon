@@ -109,6 +109,7 @@ class GradePredictor:
 
 if __name__ == "__main__":
     new_courses = sys.argv[1:]
+
     predictor = GradePredictor(
         "course_data_clean.json", base_grade_prediction_weighting=1/10)
     import ast
